@@ -1,0 +1,12 @@
+http://wiki.mxhero.com/display/DEV/Auto+Signature
+1-front end
+2-paginado la primer pagina
+3-Estilo como file:///home/juan/mxHero%20Email%20Footers%20for%20Google%20Apps%20Setup.htm
+4-Las cuentas las cuentas las consumo de json. 
+5-Import: Levantar un CSV las properties que aplican a las cuentas
+
+org.mxhero.webapi
+
+org.mxhero.webapi.restful
+
+

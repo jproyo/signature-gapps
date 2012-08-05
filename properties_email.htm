@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)https://gmail.mxhero.com/setup/emailfooters/ -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+	<header>
+	<meta charset="utf-8">
+	<title>mxHero Email Auto Signature for Google Apps Setup</title>
+		<link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css" rel="stylesheet">	
+		<link type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.1/css/jquery.dataTables.css" rel="stylesheet">
+		<link type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.1/css/jquery.dataTables_themeroller.css" rel="stylesheet">
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.1/jquery.dataTables.min.js"></script>
+		<script type="text/javascript">
+		
+		$(document).ready(function() {
+
+			$('#table-email').dataTable({
+		        "bJQueryUI": true,
+		        'bServerSide': true,
+        		'bProcessing': true,
+        		'sAjaxSource': 'http://test.mxhero.com:8080/webapi/api/v1/domains/mxhero.com/users',
+        		'bPaginate': true,
+		        'sPaginationType': 'full_numbers',
+		        'sAjaxDataProp': 'elements',
+		        'aoColumns': [
+						{ "mDataProp": "notifyEmail", "aTargets" : [0] },
+						{ 
+						  "sDefaultContent": "",
+						  "bSearchable": false,
+                          "bSortable": false,
+                          "fnRender": function (oObj) {
+                              return '<a id="edit-email-button" href="#">Edit</a>';
+                          },
+                          "aTargets" : [1] 
+                      	},	
+					],
+				"fnServerData": function ( sSource, aoData, fnCallback ) {
+						aoData.push( 
+					        { "name":"limit", "value": aoData[4].value },
+					        { "name":"offset", "value": aoData[3].value}
+					    );
+						$.ajax({
+						  "type": "POST", 
+						  beforeSend: function (xhr) { 
+						  	var base64 = btoa("admin" + ":" + "password");
+						  	xhr.setRequestHeader('Authorization', 'Basic '+base64);
+						  },
+						  "url": sSource, 
+						  "data": aoData, 
+						  "dataType": "json",
+						  "success": function(json){
+							json.iTotalRecords = json.totalElements
+							alert(json.iTotalRecords)
+							alert(json.totalElements)
+							fnCallback(json)
+						  },
+						});
+				},
+		    });
+
+			$('#property-email').dataTable({
+		        "bJQueryUI": true,
+		        "bPaginate": false,
+        		"bLengthChange": false,
+        		"bFilter": true,
+        		"bSort": false,
+        		"bInfo": false,
+        		"bAutoWidth": false
+		    });
+
+
+		});
+		</script>
+		<style type="text/css">
+			/*demo page css*/
+			body{ font: 80% "Trebuchet MS", sans-serif; margin: 5px 50px 50px 50px; background-image: url("images/main.jpg"); background-repeat: repeat;}
+			.demoHeaders { margin-top: 2em; }
+			#dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
+			#dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
+			.box {
+				background: #EEE;
+				border: 1px solid #D5D5D5;
+				position: relative;
+				border-image: initial;
+			}
+			.module {
+				margin-bottom: 15px;
+			}
+			
+			.box .box-cont.projects {
+				padding: 5px 25px 0px 25px;
+			}
+			.box .box-cont {
+				border: 1px solid #F9F9F9;
+			}
+			.explain {
+				font-size: 1.3em;
+				line-height: 1.5;
+				margin: 1em 0;
+				width: 100%;
+				color: gray;
+			}
+			
+			.col1 {
+				font-weight: bold;
+				text-align:right;
+				font-size: 1.2em;
+				color: #606060;
+			}
+			
+			a {
+				color: orange;
+			}
+			a:hover {
+				text-decoration: none;
+			}
+			
+			.very-top {
+				background: #323232;
+				padding: 10px 20px 10px 20px;
+				margin-bottom: 10px;
+			}
+			h1 { 
+				color: white;
+				margin-top: 0px;
+			}
+
+
+		</style>
+</header>
+
+
+<div class="very-top">
+<img style="margin: 0pt; padding: 0pt; border: none;" src="./images/logo-white.png"><h1>mxHero Email Auto Signature for Google Apps - Configuration</h1>
+
+
+</div>
+	<div class="box module">
+		<div class="box-cont projects">
+			<p class="explain">To finalize your Email Auto Signature setup process you <span style="color:goldenrod">must</span> conclude the step below:</p>
+			<p>&nbsp;</p>
+				<h2>Import your account email properties</h2>
+				
+				<div id="ExternalFooter">
+					<h3 style="color:brown;">Step 1: Account list for your configuration</h3>
+					<p style="color: #666666; font-size: 1.1em">Load your CSV configuration:
+						<input id="file-properties-config" type="file"/>
+						<button id="import-properties">Import</button>
+					</p>
+					<p id="text"/>
+					<div id="email-accounts">
+						<table id="table-email">
+							<thead>
+								<tr>
+									<th>Email</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
+				<p>&nbsp;</p>
+				
+				<div id="InternalFooter">
+					<h3 style="color:brown;">Step 2: Configure Properties</h3>
+					<div id="email-properties">
+						<table id="property-email">
+							<thead>
+								<tr>
+									<th>Property</th>
+									<th>Value</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Name</td>
+									<td><input type="text"/></td>
+								</tr>
+								<tr>
+									<td>LastName</td>
+									<td><input type="text"/></td>
+								</tr>
+							</tbody>
+						</table>
+						<span>
+							<button id="copyTemplate">Cancel</button>
+							<button id="copyTemplate">Save</button>
+						</span>
+					</div>
+				</div>
+				
+				<p class="explain">When the above is concluded click the "Finalize Configuration" button below.</p>
+
+			<div class="demo">
+				<a href="https://gmail.mxhero.com/setup/emailfooters/#" id="dialog_link_finalize" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Finalize Configuration</span></a>
+			</div>
+			&nbsp;
+			<p style="text-align: center;"><a href="http://gmail.mxhero.com/gapps-email-footers/">Return to Home</a></p>
+		</div>
+	</div>
+</body>
+</html>
