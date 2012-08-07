@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)https://gmail.mxhero.com/setup/emailfooters/ -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+	<header>
+	<meta charset="utf-8">
+	<title>mxHero Email Auto Signature for Google Apps Setup</title>
+		<link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css" rel="stylesheet">	
+		<link type="text/css" href="./cleditor/jquery.cleditor.css" rel="stylesheet">	
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/jquery-ui.min.js"></script>
+
+		<script type="text/javascript" src="./cleditor/jquery.cleditor.min.js"></script>
+
+		<script type="text/javascript">
+		
+		$(document).ready(function() {
+
+			$("#outside").cleditor({width:500, height:180, useCSS:true})[0].focus();
+
+			$("#inside").cleditor({width:500, height:180, useCSS:true})[0].focus();
+
+			$("#outside").cleditor()[0].$area.val("<span style='background-color: rgb(255, 255, 255); '><span style='font-style: normal; font-weight: normal; color: rgb(51, 51, 51); font-family: Arial, Helvetica, FreeSans, sans-serif; line-height: 17px; text-align: left; '>${firstname} ${lastname}</span><br style='color: rgb(51, 51, 51); font-family: Arial, Helvetica, FreeSans, sans-serif; line-height: 17px; text-align: left; '><a href='http://www.company.com/' class='external-link' rel='nofollow' style='font-style: normal; font-weight: normal; color: rgb(0, 109, 175); outline-style: none; outline-width: initial; outline-color: initial; font-family: Arial, Helvetica, FreeSans, sans-serif; line-height: 17px; text-align: left; '>www.company.com</a><span style='font-style: normal; font-weight: normal; color: rgb(51, 51, 51); font-family: Arial, Helvetica, FreeSans, sans-serif; line-height: 17px; text-align: left; '>&nbsp;| ${email}</span><br style='color: rgb(51, 51, 51); font-family: Arial, Helvetica, FreeSans, sans-serif; line-height: 17px; text-align: left; '><span style='color: rgb(51, 51, 51); font-family: Arial, Helvetica, FreeSans, sans-serif; line-height: 17px; text-align: left; font-weight: bold; font-style: italic;'>55 Main Street, London, UK, EC2A 1RE</span><br style='color: rgb(51, 51, 51); font-family: Arial, Helvetica, FreeSans, sans-serif; line-height: 17px; text-align: left; '><span style='font-style: normal; font-weight: normal; color: rgb(51, 51, 51); font-family: Arial, Helvetica, FreeSans, sans-serif; line-height: 17px; text-align: left; '>Company number: 12345678</span></span>");
+
+			$("#outside").cleditor()[0].updateFrame();
+
+			$("#inside").cleditor()[0].$area.val("<span style='font-size: 10pt; font-style: normal; font-variant: normal; font-weight: normal; color: rgb(51, 51, 51); font-family: Arial, Helvetica, FreeSans, sans-serif; line-height: 17px; text-align: left; '>${firstname} ${lastname}</span><br style='color: rgb(51, 51, 51); font-family: Arial, Helvetica, FreeSans, sans-serif; line-height: 17px; text-align: left; '><a href='http://www.company.com/' class='external-link' rel='nofollow' style='font-style: normal; font-weight: normal; color: rgb(0, 109, 175); outline-style: none; outline-width: initial; outline-color: initial; font-family: Arial, Helvetica, FreeSans, sans-serif; line-height: 17px; text-align: left; '>www.company.com</a><span style='font-style: normal; font-weight: normal; color: rgb(51, 51, 51); font-family: Arial, Helvetica, FreeSans, sans-serif; line-height: 17px; text-align: left; '>&nbsp;| ${email}</span>");
+
+			$("#inside").cleditor()[0].updateFrame();
+		});
+		</script>
+		<style type="text/css">
+			/*demo page css*/
+			body{ font: 80% "Trebuchet MS", sans-serif; margin: 5px 50px 50px 50px; background-image: url("images/main.jpg"); background-repeat: repeat;}
+			.demoHeaders { margin-top: 2em; }
+			#dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
+			#dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
+			.box {
+				background: #EEE;
+				border: 1px solid #D5D5D5;
+				position: relative;
+				border-image: initial;
+			}
+			.module {
+				margin-bottom: 15px;
+			}
+			
+			.box .box-cont.projects {
+				padding: 5px 25px 0px 25px;
+			}
+			.box .box-cont {
+				border: 1px solid #F9F9F9;
+			}
+			.explain {
+				font-size: 1.3em;
+				line-height: 1.5;
+				margin: 1em 0;
+				width: 100%;
+				color: gray;
+			}
+			
+			.col1 {
+				font-weight: bold;
+				text-align:right;
+				font-size: 1.2em;
+				color: #606060;
+			}
+			
+			a {
+				color: orange;
+			}
+			a:hover {
+				text-decoration: none;
+			}
+			
+			.very-top {
+				background: #323232;
+				padding: 10px 20px 10px 20px;
+				margin-bottom: 10px;
+			}
+			h1 { 
+				color: white;
+				margin-top: 0px;
+			}
+
+
+		</style>
+</header>
+	<div class="very-top">
+		<img style="margin: 0pt; padding: 0pt; border: none;" src="./images/logo-white.png"><h1>mxHero Email Auto Signature for Google Apps - Configuration</h1>
+	</div>
+
+	<div class="box module">
+		<div id="content" class="box-cont projects">
+			<div id="email-list">
+				<h2>Configure your email template Signature</h2>
+				
+				<div id="ExternalFooter">
+					<div id="inside-container">
+						<h3 style="color:brown;">Signature to be include in Messages sent <span style="color:goldenrod">outside</span> your organization</h3>
+						<textarea id="outside"></textarea>
+					</div>
+					<div id="outside-container">
+						<h3 style="color:brown;">Signature to be include in Messages sent <span style="color:goldenrod">inside</span> your organization</h3>
+						<textarea id="inside"></textarea>
+					</div>
+				</div>
+			</div>
+						
+			<div id="footer">
+				<div class="demo">
+					<a href="./properties_email.htm" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Next Step</span></a>
+				</div>
+				&nbsp;
+				<p style="text-align: center;"><a href="http://gmail.mxhero.com/gapps-email-footers/">Return to Home</a></p>
+			</div>
+		</div>
+	</div>
+	
+
+
+</body>
+</html>
