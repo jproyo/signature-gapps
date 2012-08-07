@@ -18,14 +18,52 @@
 		
 		$(document).ready(function() {
 
+			var data = [
+				{
+					"notifyEmail" : "pepe@pepe.com",
+					"properties" : {
+						"Name" : "Pepe",
+						"LastName": "Garcia",
+						"Phone" : "45454545454"
+					}
+				},
+				{
+					"notifyEmail" : "maria@pepe.com",
+					"properties" : {
+						"Name" : "Maria",
+						"LastName": "Perez",
+						"Phone" : "123123123"
+					}
+				},
+				{
+					"notifyEmail" : "armando@pepe.com",
+					"properties" : {
+						"Name" : "Amarndo",
+						"LastName": "Barreda",
+						"Phone" : "87378738"
+					}
+				},
+				{
+					"notifyEmail" : "homer@pepe.com",
+					"properties" : {
+						"Name" : "Homer",
+						"LastName": "Simpson",
+						"Phone" : "12313231231"
+					}
+				},
+			];
+
+			$('#email-properties').hide();
+
 			$('#table-email').dataTable({
 		        "bJQueryUI": true,
-		        'bServerSide': true,
+		        'bServerSide': false,
         		'bProcessing': true,
-        		'sAjaxSource': 'http://test.mxhero.com:8080/webapi/api/v1/domains/mxhero.com/users',
+        		//'sAjaxSource': 'http://test.mxhero.com:8080/webapi/api/v1/domains/mxhero.com/users',
         		'bPaginate': true,
 		        'sPaginationType': 'full_numbers',
-		        'sAjaxDataProp': 'elements',
+		        //'sAjaxDataProp': 'elements',
+		        'aaData' : data,
 		        'aoColumns': [
 						{ "mDataProp": "notifyEmail", "aTargets" : [0] },
 						{ 
@@ -33,7 +71,7 @@
 						  "bSearchable": false,
                           "bSortable": false,
                           "fnRender": function (oObj) {
-                              return '<a id="edit-email-button" href="#">Edit</a>';
+                              return '<button class="edit-email-button" href="#">Edit</button>';
                           },
                           "aTargets" : [1] 
                       	},	
@@ -45,10 +83,6 @@
 					    );
 						$.ajax({
 						  "type": "POST", 
-						  beforeSend: function (xhr) { 
-						  	var base64 = btoa("admin" + ":" + "password");
-						  	xhr.setRequestHeader('Authorization', 'Basic '+base64);
-						  },
 						  "url": sSource, 
 						  "data": aoData, 
 						  "dataType": "json",
@@ -62,16 +96,38 @@
 				},
 		    });
 
-			$('#property-email').dataTable({
-		        "bJQueryUI": true,
-		        "bPaginate": false,
-        		"bLengthChange": false,
-        		"bFilter": true,
-        		"bSort": false,
-        		"bInfo": false,
-        		"bAutoWidth": false
-		    });
+			$('.edit-email-button').click(function(event){
+				clear_properties();
+				var email = $(event.target.parentNode.parentNode).children()[0].innerHTML;
+				$('#title-configuration').html("Configure Properties for "+email);
+				var element = jQuery.grep(data, function(obj) {
+    				return obj.notifyEmail === email;
+				});
+				var oTable = $('#property-email');
+				var props = element[0].properties;
+				var i = 0;
+				var odd = "odd";
+				for (var key in props) {
+					odd = (i%2 === 0)?"even":"odd";
+					$('#property-email tbody:last').append('<tr class="'+odd+'"><td class="sorting_1">'+key+'</td><td><input type="text" value="'+props[key]+'"/></td></tr>');
+					i++;
+				}
+				$('#email-properties').show();
+			});
 
+			function clear_properties(){
+				$('#property-email tbody:last').children().remove();
+				$('#email-properties').hide();
+			}
+
+			$('#cancel-email-props').click(function(event){
+				clear_properties();
+			});
+
+			$('#save-email-props').click(function(event){
+				alert("Saving data ...."+$(event.target.parentNode.parentNode).children());
+				clear_properties();
+			});
 
 		});
 		</script>
@@ -146,7 +202,7 @@
 				<h2>Import your account email properties</h2>
 				
 				<div id="ExternalFooter">
-					<h3 style="color:brown;">Step 1: Account list for your configuration</h3>
+					<h3 style="color:brown;">Account list for your configuration</h3>
 					<p style="color: #666666; font-size: 1.1em">Load your CSV configuration:
 						<input id="file-properties-config" type="file"/>
 						<button id="import-properties">Import</button>
@@ -161,39 +217,29 @@
 								</tr>
 							</thead>
 							<tbody>
-							</tbody>
 						</table>
 					</div>
 				</div>
 				
 				<p>&nbsp;</p>
 				
-				<div id="InternalFooter">
-					<h3 style="color:brown;">Step 2: Configure Properties</h3>
-					<div id="email-properties">
-						<table id="property-email">
-							<thead>
-								<tr>
-									<th>Property</th>
-									<th>Value</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Name</td>
-									<td><input type="text"/></td>
-								</tr>
-								<tr>
-									<td>LastName</td>
-									<td><input type="text"/></td>
-								</tr>
-							</tbody>
-						</table>
-						<span>
-							<button id="copyTemplate">Cancel</button>
-							<button id="copyTemplate">Save</button>
-						</span>
-					</div>
+				<div id="email-properties" class="dataTables_wrapper">
+					<h3 id="title-configuration" style="color:brown;">Configure Properties</h3>
+					<div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix"><div id="table-email_length" class="dataTables_length"></div><div class="dataTables_filter" id="table-email_filter"></div></div>
+					<table id="property-email" class="dataTable" aria-describedby="table-email_info">
+						<thead>
+							<tr role="row">
+								<th class="ui-state-default" role="columnheader" tabindex="0" aria-controls="table-email" rowspan="1" colspan="1" style="width: 801px; " aria-sort="ascending" aria-label="Email: activate to sort column descending"><div class="DataTables_sort_wrapper">Property<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span></div></th>
+								<th class="ui-state-default" role="columnheader" tabindex="0" aria-controls="table-email" rowspan="1" colspan="1" style="width: 801px; " aria-sort="ascending" aria-label="Email: activate to sort column descending"><div class="DataTables_sort_wrapper">Value<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span></div></th>
+							</tr>
+						</thead>
+						<tbody role="alert" aria-live="polite" aria-relevant="all">
+						</tbody>
+					</table>
+					<span>
+						<button id="cancel-email-props">Cancel</button>
+						<button id="save-email-props">Save</button>
+					</span>
 				</div>
 				
 				<p class="explain">When the above is concluded click the "Finalize Configuration" button below.</p>
