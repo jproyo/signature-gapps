@@ -10,3 +10,5 @@ org.mxhero.webapi
 org.mxhero.webapi.restful
 
 
+http://wiki.mxhero.com/display/docs/Auto+Signature
+
