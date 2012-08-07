@@ -112,7 +112,8 @@
 					$('#property-email tbody:last').append('<tr class="'+odd+'"><td class="sorting_1">'+key+'</td><td><input type="text" value="'+props[key]+'"/></td></tr>');
 					i++;
 				}
-				$('#email-properties').show();
+				$('#email-properties').toggle();
+				$('#email-list').toggle();
 			});
 
 			function clear_properties(){
@@ -120,13 +121,21 @@
 				$('#email-properties').hide();
 			}
 
+			function toggle_divs(){
+				$('#email-list').toggle();
+				$('#email-properties').toggle();
+				$('#email-properties').hide();
+			}
+
 			$('#cancel-email-props').click(function(event){
 				clear_properties();
+				toggle_divs();
 			});
 
 			$('#save-email-props').click(function(event){
 				alert("Saving data ...."+$(event.target.parentNode.parentNode).children());
 				clear_properties();
+				toggle_divs();
 			});
 
 		});
@@ -188,17 +197,15 @@
 
 		</style>
 </header>
+	<div class="very-top">
+		<img style="margin: 0pt; padding: 0pt; border: none;" src="./images/logo-white.png"><h1>mxHero Email Auto Signature for Google Apps - Configuration</h1>
+	</div>
 
-
-<div class="very-top">
-<img style="margin: 0pt; padding: 0pt; border: none;" src="./images/logo-white.png"><h1>mxHero Email Auto Signature for Google Apps - Configuration</h1>
-
-
-</div>
 	<div class="box module">
-		<div class="box-cont projects">
-			<p class="explain">To finalize your Email Auto Signature setup process you <span style="color:goldenrod">must</span> conclude the step below:</p>
-			<p>&nbsp;</p>
+		<div id="content" class="box-cont projects">
+			<div id="email-list">
+				<p class="explain">To finalize your Email Auto Signature setup process you <span style="color:goldenrod">must</span> conclude the step below:</p>
+				<p>&nbsp;</p>
 				<h2>Import your account email properties</h2>
 				
 				<div id="ExternalFooter">
@@ -216,40 +223,43 @@
 									<th></th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody/>
 						</table>
 					</div>
 				</div>
-				
-				<p>&nbsp;</p>
-				
-				<div id="email-properties" class="dataTables_wrapper">
-					<h3 id="title-configuration" style="color:brown;">Configure Properties</h3>
-					<div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix"><div id="table-email_length" class="dataTables_length"></div><div class="dataTables_filter" id="table-email_filter"></div></div>
-					<table id="property-email" class="dataTable" aria-describedby="table-email_info">
-						<thead>
-							<tr role="row">
-								<th class="ui-state-default" role="columnheader" tabindex="0" aria-controls="table-email" rowspan="1" colspan="1" style="width: 801px; " aria-sort="ascending" aria-label="Email: activate to sort column descending"><div class="DataTables_sort_wrapper">Property<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span></div></th>
-								<th class="ui-state-default" role="columnheader" tabindex="0" aria-controls="table-email" rowspan="1" colspan="1" style="width: 801px; " aria-sort="ascending" aria-label="Email: activate to sort column descending"><div class="DataTables_sort_wrapper">Value<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span></div></th>
-							</tr>
-						</thead>
-						<tbody role="alert" aria-live="polite" aria-relevant="all">
-						</tbody>
-					</table>
-					<span>
-						<button id="cancel-email-props">Cancel</button>
-						<button id="save-email-props">Save</button>
-					</span>
-				</div>
-				
+			</div>
+						
+			<div id="email-properties" class="dataTables_wrapper">
+				<h3 id="title-configuration" style="color:brown;">Configure Properties</h3>
+				<div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix"><div id="table-email_length" class="dataTables_length"></div><div class="dataTables_filter" id="table-email_filter"></div></div>
+				<table id="property-email" class="dataTable" aria-describedby="table-email_info">
+					<thead>
+						<tr role="row">
+							<th class="ui-state-default" role="columnheader" tabindex="0" aria-controls="table-email" rowspan="1" colspan="1" style="width: 801px; " aria-sort="ascending" aria-label="Email: activate to sort column descending"><div class="DataTables_sort_wrapper">Property<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span></div></th>
+							<th class="ui-state-default" role="columnheader" tabindex="0" aria-controls="table-email" rowspan="1" colspan="1" style="width: 801px; " aria-sort="ascending" aria-label="Email: activate to sort column descending"><div class="DataTables_sort_wrapper">Value<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span></div></th>
+						</tr>
+					</thead>
+					<tbody role="alert" aria-live="polite" aria-relevant="all">
+					</tbody>
+				</table>
+				<span>
+					<button id="cancel-email-props">Cancel</button>
+					<button id="save-email-props">Save</button>
+				</span>
+			</div>
+			<div id="footer">
 				<p class="explain">When the above is concluded click the "Finalize Configuration" button below.</p>
 
-			<div class="demo">
-				<a href="https://gmail.mxhero.com/setup/emailfooters/#" id="dialog_link_finalize" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Finalize Configuration</span></a>
+				<div class="demo">
+					<a href="https://gmail.mxhero.com/setup/emailfooters/#" id="dialog_link_finalize" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Finalize Configuration</span></a>
+				</div>
+				&nbsp;
+				<p style="text-align: center;"><a href="http://gmail.mxhero.com/gapps-email-footers/">Return to Home</a></p>
 			</div>
-			&nbsp;
-			<p style="text-align: center;"><a href="http://gmail.mxhero.com/gapps-email-footers/">Return to Home</a></p>
 		</div>
 	</div>
+	
+
+
 </body>
 </html>
