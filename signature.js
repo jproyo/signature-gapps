@@ -12,6 +12,12 @@ $(document).ready(function() {
 
 	$("#inside").cleditor()[0].updateFrame();
 
+	function register_event_remove_button(){
+		$('.remove-prop').click(function(event){
+			$(event.target.parentNode.parentNode).remove();
+		});
+	}
+
 	var data = [
 		{
 			"notifyEmail" : "pepe@pepe.com",
@@ -103,9 +109,10 @@ $(document).ready(function() {
 		var odd = "odd";
 		for (var key in props) {
 			odd = (i%2 === 0)?"even":"odd";
-			$('#property-email tbody:last').append('<tr class="'+odd+'"><td class="sorting_1">'+key+'</td><td><input type="text" value="'+props[key]+'"/></td></tr>');
+			$('#property-email tbody:last').append('<tr class="'+odd+'"><td class="sorting_1"><input type="text" value="'+key+'"/></td><td><input type="text" value="'+props[key]+'"/></td><td><button class="remove-prop">Remove</button></td></tr>');
 			i++;
 		}
+		register_event_remove_button();
 		$('#email-properties').toggle();
 		$('#email-list').toggle();
 	});
@@ -127,7 +134,7 @@ $(document).ready(function() {
 	});
 
 	$('#save-email-props').click(function(event){
-		alert("Saving data ...."+$(event.target.parentNode.parentNode).children());
+		alert("Saving data ...."+$(event.target.parentNode.parentNode).children().html());
 		clear_properties();
 		toggle_divs();
 	});
@@ -143,7 +150,7 @@ $(document).ready(function() {
 		show : { effect: 'drop', direction: "up" },
 		title: "Accounts Configuration"
 	});
-	
+
 	$('#config-accounts').click(function(event){
 		$('#dialog').dialog("open");
 	});
@@ -151,4 +158,12 @@ $(document).ready(function() {
 	$('#finalize-config').click(function(event){
 		alert("Congratulations!!!!");
 	});
+
+	$('#add-property').click(function(event){
+		var odd = $('#property-email tbody:last').children().last().attr('class')
+		odd = (odd === "even")?"odd":"even";
+		$('#property-email tbody:last').append('<tr class="'+odd+'"><td class="sorting_1"><input type="text"/></td><td><input type="text"/></td><td><button class="remove-prop">Remove</button></td></tr>');
+		register_event_remove_button();
+	});
+
 });
