@@ -9,85 +9,22 @@
 	<meta charset="utf-8">
 	<title>mxHero Email Auto Signature for Google Apps Setup</title>
 		<link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css" rel="stylesheet">	
-		<link type="text/css" href="./cleditor/jquery.cleditor.css" rel="stylesheet">	
+		<link type="text/css" href="./cleditor/jquery.cleditor.css" rel="stylesheet">
+		<link type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.1/css/jquery.dataTables.css" rel="stylesheet">
+		<link type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.1/css/jquery.dataTables_themeroller.css" rel="stylesheet">
+
+		<link type="text/css" href="./signature.css" rel="stylesheet">
+		
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/jquery-ui.min.js"></script>
 
+		<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.1/jquery.dataTables.min.js"></script>
+		
 		<script type="text/javascript" src="./cleditor/jquery.cleditor.min.js"></script>
 
-		<script type="text/javascript">
-		
-		$(document).ready(function() {
+		<script type="text/javascript" src="./signature.js"></script>
 
-			$("#outside").cleditor({width:500, height:180, useCSS:true})[0].focus();
-
-			$("#inside").cleditor({width:500, height:180, useCSS:true})[0].focus();
-
-			$("#outside").cleditor()[0].$area.val("<span style='background-color: rgb(255, 255, 255); '><span style='font-style: normal; font-weight: normal; color: rgb(51, 51, 51); font-family: Arial, Helvetica, FreeSans, sans-serif; line-height: 17px; text-align: left; '>${firstname} ${lastname}</span><br style='color: rgb(51, 51, 51); font-family: Arial, Helvetica, FreeSans, sans-serif; line-height: 17px; text-align: left; '><a href='http://www.company.com/' class='external-link' rel='nofollow' style='font-style: normal; font-weight: normal; color: rgb(0, 109, 175); outline-style: none; outline-width: initial; outline-color: initial; font-family: Arial, Helvetica, FreeSans, sans-serif; line-height: 17px; text-align: left; '>www.company.com</a><span style='font-style: normal; font-weight: normal; color: rgb(51, 51, 51); font-family: Arial, Helvetica, FreeSans, sans-serif; line-height: 17px; text-align: left; '>&nbsp;| ${email}</span><br style='color: rgb(51, 51, 51); font-family: Arial, Helvetica, FreeSans, sans-serif; line-height: 17px; text-align: left; '><span style='color: rgb(51, 51, 51); font-family: Arial, Helvetica, FreeSans, sans-serif; line-height: 17px; text-align: left; font-weight: bold; font-style: italic;'>55 Main Street, London, UK, EC2A 1RE</span><br style='color: rgb(51, 51, 51); font-family: Arial, Helvetica, FreeSans, sans-serif; line-height: 17px; text-align: left; '><span style='font-style: normal; font-weight: normal; color: rgb(51, 51, 51); font-family: Arial, Helvetica, FreeSans, sans-serif; line-height: 17px; text-align: left; '>Company number: 12345678</span></span>");
-
-			$("#outside").cleditor()[0].updateFrame();
-
-			$("#inside").cleditor()[0].$area.val("<span style='font-size: 10pt; font-style: normal; font-variant: normal; font-weight: normal; color: rgb(51, 51, 51); font-family: Arial, Helvetica, FreeSans, sans-serif; line-height: 17px; text-align: left; '>${firstname} ${lastname}</span><br style='color: rgb(51, 51, 51); font-family: Arial, Helvetica, FreeSans, sans-serif; line-height: 17px; text-align: left; '><a href='http://www.company.com/' class='external-link' rel='nofollow' style='font-style: normal; font-weight: normal; color: rgb(0, 109, 175); outline-style: none; outline-width: initial; outline-color: initial; font-family: Arial, Helvetica, FreeSans, sans-serif; line-height: 17px; text-align: left; '>www.company.com</a><span style='font-style: normal; font-weight: normal; color: rgb(51, 51, 51); font-family: Arial, Helvetica, FreeSans, sans-serif; line-height: 17px; text-align: left; '>&nbsp;| ${email}</span>");
-
-			$("#inside").cleditor()[0].updateFrame();
-		});
-		</script>
-		<style type="text/css">
-			/*demo page css*/
-			body{ font: 80% "Trebuchet MS", sans-serif; margin: 5px 50px 50px 50px; background-image: url("images/main.jpg"); background-repeat: repeat;}
-			.demoHeaders { margin-top: 2em; }
-			#dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
-			#dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
-			.box {
-				background: #EEE;
-				border: 1px solid #D5D5D5;
-				position: relative;
-				border-image: initial;
-			}
-			.module {
-				margin-bottom: 15px;
-			}
-			
-			.box .box-cont.projects {
-				padding: 5px 25px 0px 25px;
-			}
-			.box .box-cont {
-				border: 1px solid #F9F9F9;
-			}
-			.explain {
-				font-size: 1.3em;
-				line-height: 1.5;
-				margin: 1em 0;
-				width: 100%;
-				color: gray;
-			}
-			
-			.col1 {
-				font-weight: bold;
-				text-align:right;
-				font-size: 1.2em;
-				color: #606060;
-			}
-			
-			a {
-				color: orange;
-			}
-			a:hover {
-				text-decoration: none;
-			}
-			
-			.very-top {
-				background: #323232;
-				padding: 10px 20px 10px 20px;
-				margin-bottom: 10px;
-			}
-			h1 { 
-				color: white;
-				margin-top: 0px;
-			}
-
-
-		</style>
 </header>
 	<div class="very-top">
 		<img style="margin: 0pt; padding: 0pt; border: none;" src="./images/logo-white.png"><h1>mxHero Email Auto Signature for Google Apps - Configuration</h1>
@@ -95,10 +32,9 @@
 
 	<div class="box module">
 		<div id="content" class="box-cont projects">
-			<div id="email-list">
+			<div id="email-signature-list">
 				<h2>Configure your email template Signature</h2>
-				
-				<div id="ExternalFooter">
+				<div>
 					<div id="inside-container">
 						<h3 style="color:brown;">Signature to be include in Messages sent <span style="color:goldenrod">outside</span> your organization</h3>
 						<textarea id="outside"></textarea>
@@ -112,7 +48,8 @@
 						
 			<div id="footer">
 				<div class="demo">
-					<a href="./properties_email.htm" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Next Step</span></a>
+					<a id="config-accounts" href="#" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Configure Accounts</span></a>
+					<a id="finalize-config" href="#" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Finalize Configuration</span></a>
 				</div>
 				&nbsp;
 				<p style="text-align: center;"><a href="http://gmail.mxhero.com/gapps-email-footers/">Return to Home</a></p>
@@ -121,6 +58,51 @@
 	</div>
 	
 
+	<div id="dialog">
+		<div class="box-cont projects">
+			<div id="email-list">
+				<h2>Import your account email properties</h2>
+				<div>
+					<h3 style="color:brown;">Account list for your configuration</h3>
+					<p style="color: #666666; font-size: 1.1em">Load your CSV configuration:
+						<input id="file-properties-config" type="file"/>
+						<button id="import-properties">Import</button>
+					</p>
+					<p id="text"/>
+					<div id="email-accounts">
+						<table id="table-email">
+							<thead>
+								<tr>
+									<th>Email</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody/>
+						</table>
+					</div>
+				</div>
+			</div>
+						
+			<div id="email-properties" class="dataTables_wrapper">
+				<h3 id="title-configuration" style="color:brown;">Configure Properties</h3>
+				<div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix"><div id="table-email_length" class="dataTables_length"></div><div class="dataTables_filter" id="table-email_filter"></div></div>
+				<table id="property-email" class="dataTable" aria-describedby="table-email_info">
+					<thead>
+						<tr role="row">
+							<th class="ui-state-default" role="columnheader" tabindex="0" aria-controls="table-email" rowspan="1" colspan="1" style="width: 801px; " aria-sort="ascending" aria-label="Email: activate to sort column descending"><div class="DataTables_sort_wrapper">Property<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span></div></th>
+							<th class="ui-state-default" role="columnheader" tabindex="0" aria-controls="table-email" rowspan="1" colspan="1" style="width: 801px; " aria-sort="ascending" aria-label="Email: activate to sort column descending"><div class="DataTables_sort_wrapper">Value<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span></div></th>
+						</tr>
+					</thead>
+					<tbody role="alert" aria-live="polite" aria-relevant="all">
+					</tbody>
+				</table>
+				<span>
+					<button id="cancel-email-props">Cancel</button>
+					<button id="save-email-props">Save</button>
+				</span>
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>
